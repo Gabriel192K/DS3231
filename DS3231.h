@@ -23,6 +23,7 @@ class DS3231
     private:
         uint8_t began;
         __TWI__* twi;
+        
         const uint8_t bcd2dec(const uint8_t bcd);
         const uint8_t dec2bcd(const uint8_t dec);
 };
