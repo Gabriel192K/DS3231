@@ -56,9 +56,9 @@ const uint8_t DS3231::setTime(const uint8_t hours, const uint8_t minutes, const 
 {
     this->twi->beginTransmission(DS3231_TWI_ADDRESS);
     this->twi->write(DS3231_SECONDS_REGISTER_ADDRESS);
-    this->twi->write(dec2bcd(seconds));
-    this->twi->write(dec2bcd(minutes));
-    this->twi->write(dec2bcd(hours));
+    this->twi->write(this->dec2bcd(seconds));
+    this->twi->write(this->dec2bcd(minutes));
+    this->twi->write(this->dec2bcd(hours));
     return (this->twi->endTransmission() == 1);
 }
 
@@ -95,7 +95,7 @@ const uint8_t DS3231::setDayOfWeek(const uint8_t dow)
 {
     this->twi->beginTransmission(DS3231_TWI_ADDRESS);
     this->twi->write(DS3231_DAY_OF_WEEK_REGISTER_ADDRESS);
-    this->twi->write(dec2bcd(dow));
+    this->twi->write(this->dec2bcd(dow));
     return (this->twi->endTransmission() == 1);
 }
 
@@ -130,9 +130,9 @@ const uint8_t DS3231::setDate(const uint8_t date, const uint8_t month, const uin
 {
     this->twi->beginTransmission(DS3231_TWI_ADDRESS);
     this->twi->write(DS3231_DATE_REGISTER_ADDRESS);
-    this->twi->write(dec2bcd(date));
-    this->twi->write(dec2bcd(month));
-    this->twi->write(dec2bcd(year));
+    this->twi->write(this->dec2bcd(date));
+    this->twi->write(this->dec2bcd(month));
+    this->twi->write(this->dec2bcd(year));
     return (this->twi->endTransmission() == 1);
 }
 
@@ -194,7 +194,7 @@ const uint8_t DS3231::end(void)
  *         The number to convert
  * @return Returns the converted byte
  */
-const uint8_t bcd2dec(const uint8_t bcd)
+const uint8_t DS3231::bcd2dec(const uint8_t bcd)
 {
     return ((bcd / 16) * 10) + (bcd % 16);
 }
@@ -205,7 +205,7 @@ const uint8_t bcd2dec(const uint8_t bcd)
  *         The number to convert
  * @return Returns the converted byte
  */
-const uint8_t dec2bcd(const uint8_t dec)
+const uint8_t DS3231::dec2bcd(const uint8_t dec)
 {
     return ((dec / 10) * 16) + (dec % 10);
 }

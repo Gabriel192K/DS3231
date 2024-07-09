@@ -8,5 +8,5 @@ DS3231 library for interfacing DS3231 RTC
 - Error proof logic with returns for error or success
 
 ## Tested on
-- `Microchip Studio IDE`-with `ATmega328P`
+- `ATmega328P` @16MHz with `Microchip Studio IDE` 
 

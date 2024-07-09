@@ -2,7 +2,11 @@
 #define __DS3231_H__
 
 /* Dependencies */
+#if defined(ARDUINO)
+#include <TWI.h>
+#else
 #include "../TWI/TWI.h"
+#endif
 #include "DS3231 Mnemonics.h"
 
 class DS3231
